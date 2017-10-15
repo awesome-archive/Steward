@@ -9,8 +9,6 @@ import $ from 'jquery'
 import Auth from '../../js/common/auth'
 import conf from '../../js/conf/pocket_conf'
 
-console.log('hello login.js....');
-
 var auth = new Auth(conf);
 
 function handler(results) {
@@ -20,6 +18,5 @@ function handler(results) {
 }
 
 auth.getAccessToken(handler, function () {
-    console.log('login success!....');
     window.close();
 });

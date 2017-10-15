@@ -8,14 +8,15 @@
 import $ from 'jquery'
 import request from '../common/request'
 import util from '../common/util'
+import browser from 'webextension-polyfill'
 
 var version = 3;
 var name = 'urlblock';
 var keys = [{ key: 'bk' }, { key: 'bk8' }];
 var type = 'keyword';
-var icon = chrome.extension.getURL('img/urlblock.png');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/urlblock.png');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var BLOCK_EXPIRED = 8 * 60 * 60 * 1000;
 var commands = util.genCommands(name, icon, keys, type);
 
@@ -38,7 +39,6 @@ function removeBlacklist(id) {
     var cmdbox = this;
 
     if (!(String(id)).startsWith('bk_') && (+new Date() - id) < BLOCK_EXPIRED) {
-        console.log('url will be blocked 8 hours...');
         return;
     }
 
@@ -47,7 +47,7 @@ function removeBlacklist(id) {
             return url.id !== id;
         });
 
-        chrome.storage.sync.set({
+        browser.storage.sync.set({
             url: blacklist
         }, function () {
                 cmdbox.refresh();
@@ -77,7 +77,7 @@ function addBlacklist(key, url, type) {
             title: url
         });
 
-        chrome.storage.sync.set({
+        browser.storage.sync.set({
             url: blacklist
 
         }, function () {
@@ -98,7 +98,7 @@ function noticeBackground(action, url) {
 }
 
 function getBlacklist(callback) {
-    chrome.storage.sync.get('url', function (results) {
+    browser.storage.sync.get('url', function (results) {
         var blacklist = results.url;
 
         callback(blacklist);

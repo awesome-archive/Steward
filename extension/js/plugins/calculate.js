@@ -8,14 +8,15 @@
 import $ from 'jquery'
 import util from '../common/util'
 import mathexp from 'math-expression-evaluator'
+import browser from 'webextension-polyfill'
 
 var name = 'calculate';
 var version = 3;
 var type = 'regexp';
 var key = 'calc';
-var icon = chrome.extension.getURL('img/calc.png');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/calc.png');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var withoutKey = true;
 var regExp = /^(==|~=|&&|\|\||[0-9]|[\+\-\*\/\^\.%, ""]|[\(\)\|\!\[\]])+$/;
 

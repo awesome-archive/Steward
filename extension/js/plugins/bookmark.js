@@ -6,15 +6,15 @@
  */
 
 import $ from 'jquery'
+import browser from 'webextension-polyfill'
 
-var chrome = window.chrome;
 var version = 2;
 var name = 'bookmark';
 var key = 'bm';
 var type = 'keyword';
-var icon = chrome.extension.getURL('img/bookmark.png');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/bookmark.png');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var commands = [{
     key,
     type,
@@ -27,14 +27,14 @@ var commands = [{
 
 function searchBookmark(cmdbox, key, callback) {
     if (!key) {
-        chrome.bookmarks.getRecent(10, function (bookMarkList) {
+        browser.bookmarks.getRecent(10, function (bookMarkList) {
             callback(bookMarkList || []);
         });
 
         return;
     }
 
-    chrome.bookmarks.search(key, function (bookMarkList) {
+    browser.bookmarks.search(key, function (bookMarkList) {
         bookMarkList = bookMarkList || [];
 
         bookMarkList = bookMarkList.filter(function (bookmark) {
@@ -67,7 +67,7 @@ function onInput(key) {
 }
 
 function onEnter(item) {
-    chrome.tabs.create({
+    browser.tabs.create({
         url: item.url
     });
 }

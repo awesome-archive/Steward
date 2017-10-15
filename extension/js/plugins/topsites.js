@@ -6,15 +6,15 @@
  */
 
 import $ from 'jquery'
+import browser from 'webextension-polyfill'
 
-var chrome = window.chrome;
 var version = 2;
 var name = 'topsites';
 var key = 'site';
 var type = 'keyword';
-var icon = chrome.extension.getURL('img/topsites.png');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/topsites.png');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var commands = [{
     key,
     type,
@@ -26,7 +26,7 @@ var commands = [{
 
 function onInput(key) {
     var that = this;
-    chrome.topSites.get(function (sites) {
+    browser.topSites.get(function (sites) {
         var arr = [];
         for (var i in sites) {
             var item = sites[i];
@@ -45,7 +45,7 @@ function onInput(key) {
 }
 
 function onEnter({ url }) {
-    chrome.tabs.create({
+    browser.tabs.create({
         url
     });
 }

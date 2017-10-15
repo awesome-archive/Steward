@@ -113,7 +113,6 @@ function onEnter(item) {
         var query = this.query
         var matches = query.match(tagReg)
         if (!matches) {
-            console.log('标签不能为空');
             return
         }
 

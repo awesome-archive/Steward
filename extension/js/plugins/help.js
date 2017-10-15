@@ -6,14 +6,15 @@
 
 import $ from 'jquery'
 import _ from 'underscore'
+import browser from 'webextension-polyfill'
 
 var version = 2;
 var name = 'help';
 var key = 'help';
 var type = 'keyword';
-var icon = chrome.extension.getURL('img/help.ico');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/help.ico');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var commands = [{
     key,
     type,

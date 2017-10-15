@@ -7,6 +7,7 @@
 
 import $ from 'jquery'
 import util from '../common/util'
+import browser from 'webextension-polyfill'
 
 var url = 'https://fanyi.youdao.com/openapi.do?' +
 'keyfrom=mineword&key=1362458147&type=data&doctype=json&version=1.1&q=';
@@ -16,9 +17,9 @@ var version = 2;
 var name = 'youdao';
 var key = 'yd';
 var type = 'keyword';
-var icon = chrome.extension.getURL('img/youdao.png');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/youdao.png');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var commands = [{
     key,
     type,

@@ -34,8 +34,6 @@ function saveWallpaperLink() {
             wallpapers = _.uniq(wallpapers);
         }
 
-        console.log(wallpapers);
-
         return {
             [STORAGE_KEY]: wallpapers
         };
@@ -50,7 +48,6 @@ export function refreshWallpaper(today) {
     api.bing[method]().then((resp) => {
         updateWallpaper(api.bing.root + resp.images[0].url, true);
     }).catch(resp => {
-        console.log(resp);
     });
 }
 

@@ -6,14 +6,15 @@
  */
 
 import $ from 'jquery'
+import browser from 'webextension-polyfill'
 
 var version = 2;
 var name = 'history';
 var key = 'his';
 var type = 'keyword';
-var icon = chrome.extension.getURL('img/history.png');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/history.png');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var commands = [{
     key,
     type,
@@ -24,7 +25,7 @@ var commands = [{
 }];
 
 function searchHistory(cmdbox, key, callback) {
-    chrome.history.search({
+    browser.history.search({
         text: key
 
     }, function (hisList) {
@@ -59,7 +60,9 @@ function onInput(key) {
 }
 
 function onEnter(item) {
-    window.open(item.url);
+    browser.tabs.create({
+        url: item.url
+    });
 }
 
 export default {

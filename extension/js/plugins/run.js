@@ -7,14 +7,15 @@
 
 import $ from 'jquery'
 import util from '../common/util'
+import browser from 'webextension-polyfill'
 
 var version = 2;
 var name = 'runapp';
 var key = 'run';
 var type = 'keyword';
-var icon = chrome.extension.getURL('img/app.png');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/app.png');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var commands = [{
     key,
     type,
@@ -25,7 +26,7 @@ var commands = [{
 }];
 
 function getExtensions(key, callback) {
-    chrome.management.getAll(function (extList) {
+    browser.management.getAll(function (extList) {
         var data = extList.filter(function (ext) {
             return util.matchText(key, ext.name) && ext.isApp;
         });
@@ -58,8 +59,8 @@ function onInput(key) {
 }
 
 function launch(id) {
-    chrome.management.setEnabled(id, true, function () {
-        chrome.management.launchApp(id, function () {});
+    browser.management.setEnabled(id, true, function () {
+        browser.management.launchApp(id, function () {});
     });
 }
 

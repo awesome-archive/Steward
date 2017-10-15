@@ -222,7 +222,6 @@ function restoreConfig() {
             try {
                 pluginsData = res.config.plugins;
             } catch (e) {
-                console.log('There is no plugins configuration yet');
             }
 
             plugins.forEach((plugin) => {

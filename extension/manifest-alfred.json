@@ -1,12 +1,18 @@
 {
     "manifest_version": 2,
-    "name": "Browser Alfred: 扩展管家/应用启动/标签管理/历史记录查询/alfred",
+    "name": "Browser Alfred: 浏览器命令启动器",
     "short_name": "Alfred",
     "version": "2.6.7",
     "description": "便捷管理扩展/应用/标签/历史记录等",
     "default_locale": "zh_CN",
     "background": {
         "page": "background.html"
+    },
+    "applications": {
+        "gecko": {
+          "id": "solopea@gmail.com",
+          "strict_min_version": "53.0"
+        }
     },
     "browser_action": {
         "default_icon": "img/icon.png",
@@ -25,9 +31,12 @@
         "login.html"
     ],
     "content_security_policy": "script-src 'self' 'unsafe-eval' https://ssl.google-analytics.com; object-src 'self'",
-    "options_page": "options.html",
+    "options_ui": {
+        "page": "options.html",
+        "open_in_tab": true
+    },
     "optional_permissions": [
-        "background", "clipboardRead", "clipboardWrite"
+        "clipboardRead", "clipboardWrite"
     ],
     "permissions": [
         "history",

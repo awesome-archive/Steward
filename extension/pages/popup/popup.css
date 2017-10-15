@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-size: 12px;
 
     -webkit-user-select: none;
     max-height: 450px;

@@ -7,14 +7,15 @@
 
 import $ from 'jquery'
 import util from '../common/util'
+import browser from 'webextension-polyfill'
 
 var version = 2;
 var name = 'setOption';
 var key = 'set';
 var type = 'keyword';
-var icon = chrome.extension.getURL('img/set.png');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/set.png');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var commands = [{
     key,
     type,
@@ -32,7 +33,7 @@ function openOptionPage(item, cb) {
         return;
     }
 
-    chrome.tabs.create({
+    browser.tabs.create({
         url: url
     }, function () {
         cb.call(null);
@@ -41,7 +42,7 @@ function openOptionPage(item, cb) {
 
 // get all
 function getExtensions(key, enabled, callback) {
-    chrome.management.getAll(function (extList) {
+    browser.management.getAll(function (extList) {
         var matchExts = extList.filter(function (ext) {
             return !ext.isApp && ext.enabled === enabled && util.matchText(key, ext.name);
         });
@@ -86,7 +87,7 @@ function sortExtFn(a, b) {
 }
 
 function sortExtensions(matchExts, key, callback) {
-    chrome.storage.sync.get('ext', function (data) {
+    browser.storage.sync.get('ext', function (data) {
         var sExts = data.ext;
 
         if (!sExts) {

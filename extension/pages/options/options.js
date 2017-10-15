@@ -13,7 +13,6 @@ var manifest = chrome.runtime.getManifest();
 const version = manifest.version;
 const extType = EXT_TYPE === 'alfred' ? 'Browser Alfred' : 'steward';
 
-console.log(`ext_type is: ${extType}`);
 const storeId = extType === 'steward' ? 'dnkhdiodfglfckibnfcjbgddcgjgkacd' : 'jglmompgeddkbcdamdknmebaimldkkbl';
 
 Vue.use(ElementUI)
@@ -31,8 +30,6 @@ let pluginModules = _.sortBy(pluginList, 'name').map(plugin => {
 });
 let config;
 
-console.log(pluginModules);
-
 // plugins: { [pname]: { version, commands } }
 function init() {
     chrome.storage.sync.get('config', function(res) {
@@ -41,8 +38,6 @@ function init() {
         } else {
             config = {};
         }
-        console.log(config);
-
         let plugins = {};
         let general = {
             cacheLastCmd: true,
@@ -87,7 +82,6 @@ function getI18nTexts(obj) {
             }
         }
     } catch (e) {
-        console.log(e);
     }
 
     return texts;
@@ -190,7 +184,6 @@ function render({general, plugins, lastVersion}, i18nTexts) {
                     config: newConfig
                 }, function() {
                     if (silent) {
-                        console.log('save successfully');
                     } else {
                         self.$message('save successfully!');
                     }

@@ -6,15 +6,15 @@
  */
 
 import $ from 'jquery'
+import browser from 'webextension-polyfill'
 
-var chrome = window.chrome;
 var version = 2;
 var name = 'download';
 var key = 'dl';
 var type = 'keyword';
-var icon = chrome.extension.getURL('img/download.png');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/download.png');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var commands = [{
     key,
     type,
@@ -25,7 +25,7 @@ var commands = [{
 }];
 
 function searchDownload(cmdbox, query, callback) {
-    chrome.downloads.search({
+    browser.downloads.search({
       query: [query],
       orderBy: ['-endTime']
     }, function (downloadList) {
@@ -70,7 +70,7 @@ function onInput(key) {
 }
 
 function onEnter(item) {
-    chrome.downloads.show(item.id);
+    browser.downloads.show(item.id);
 }
 
 export default {

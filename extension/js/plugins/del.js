@@ -7,14 +7,15 @@
 
 import $ from 'jquery'
 import util from '../common/util'
+import browser from 'webextension-polyfill'
 
 var version = 2;
 var name = 'deleteExtension';
 var key = 'del';
 var type = 'keyword';
-var icon = chrome.extension.getURL('img/del.png');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/del.png');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var commands = [{
     key,
     type,
@@ -25,14 +26,14 @@ var commands = [{
 }];
 
 function uninstall(id, cb) {
-    chrome.management.uninstall(id, function () {
+    browser.management.uninstall(id, function () {
         cb.apply(null, arguments);
     });
 }
 
 // get all
 function getExtensions(key, enabled, callback) {
-    chrome.management.getAll(function (extList) {
+    browser.management.getAll(function (extList) {
         var matchExts = extList.filter(function (ext) {
             return util.matchText(key, ext.name);
         });
@@ -77,7 +78,7 @@ function sortExtFn(a, b) {
 }
 
 function sortExtensions(matchExts, key, callback) {
-    chrome.storage.sync.get('ext', function (data) {
+    browser.storage.sync.get('ext', function (data) {
         var sExts = data.ext;
 
         if (!sExts) {

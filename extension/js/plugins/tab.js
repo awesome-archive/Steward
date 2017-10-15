@@ -7,14 +7,15 @@
 
 import $ from 'jquery'
 import util from '../common/util'
+import browser from 'webextension-polyfill'
 
 var version = 2;
 var name = 'locateTab';
 var key = 'tab';
 var type = 'keyword';
-var icon = chrome.extension.getURL('img/tab.png');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/tab.png');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var commands = [{
     key,
     type,
@@ -25,7 +26,7 @@ var commands = [{
 }];
 
 function getAllTabs(key, callback) {
-    chrome.windows.getAll(function (wins) {
+    browser.windows.getAll(function (wins) {
         if (!wins.length) {
             return;
         }
@@ -33,7 +34,7 @@ function getAllTabs(key, callback) {
         for (var i = 0, len = wins.length; i < len; i++) {
             // 闭包
             (function (index) {
-                chrome.tabs.getAllInWindow(wins[index].id, function (tabs) {
+                browser.tabs.getAllInWindow(wins[index].id, function (tabs) {
                     var tabList = tabs.filter(function (tab) {
                         return util.matchText(key, tab.title);
                     });
@@ -70,7 +71,7 @@ function onInput(key) {
 }
 
 function onEnter({ id }) {
-    chrome.tabs.update(id, {
+    browser.tabs.update(id, {
         active: true
     });
 }

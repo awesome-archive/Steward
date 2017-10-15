@@ -80,10 +80,8 @@ Auth.prototype.getAccessToken = function (handler, callback) {
             var error = xhr.getResponseHeader('X-Error');
 
             if (!error || error === null) {
-                console.log('Unknown error 1 [in getAccessToken].');
             }
             else {
-                console.log(error + '[in getAccessToken].');
             }
         }
 

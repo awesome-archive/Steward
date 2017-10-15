@@ -7,16 +7,17 @@
 
 import $ from 'jquery'
 import { getByCity } from '../api/weather'
+import browser from 'webextension-polyfill'
 
 var version = 2;
 var name = 'weather';
 var key = 'tq';
 var type = 'keyword';
-var icon = chrome.extension.getURL('img/weather.png');
-var indexIcon = chrome.extension.getURL('img/index.png');
-var pm25Icon = chrome.extension.getURL('img/pm25.png');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/weather.png');
+var indexIcon = browser.extension.getURL('img/index.png');
+var pm25Icon = browser.extension.getURL('img/pm25.png');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var commands = [{
     key,
     type,

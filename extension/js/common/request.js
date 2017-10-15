@@ -9,7 +9,7 @@ function emptyFn() {
 }
 
 function send(obj, callback = () => {}) {
-    chrome.extension.sendRequest(obj || {}, function (response) {
+    chrome.runtime.sendMessage(obj || {}, function (response) {
         callback(response);
     });
 }
@@ -22,7 +22,7 @@ function log(msg) {
 }
 
 function get(cb) {
-    chrome.extension.onRequest.addListener(function (request, sender, sendResponse) {
+    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         cb.apply(null, arguments);
     });
 }

@@ -8,6 +8,7 @@
 import $ from 'jquery'
 import Auth from '../common/auth'
 import conf from '../conf/pocket_conf'
+import browser from 'webextension-polyfill'
 
 var auth = new Auth(conf);
 var version = 2;
@@ -15,8 +16,8 @@ var name = 'pocket';
 var key = 'po';
 var type = 'keyword';
 var icon = 'http://getpocket.com/i/apple-touch-icon/Pocket_AppIcon_57.png';
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var commands = [{
     key,
     type,

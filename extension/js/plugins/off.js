@@ -7,14 +7,15 @@
 
 import $ from 'jquery'
 import util from '../common/util'
+import browser from 'webextension-polyfill'
 
 var version = 2;
 var name = 'offExtension';
 var key = 'off';
 var type = 'keyword';
-var icon = chrome.extension.getURL('img/off.png');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/off.png');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var commands = [{
     key,
     type,
@@ -25,11 +26,11 @@ var commands = [{
 }];
 
 function setEnabled(id, enabled) {
-    chrome.management.setEnabled(id, enabled, function () {});
+    browser.management.setEnabled(id, enabled);
 }
 
 function getExtensions(key, enabled, callback) {
-    chrome.management.getAll(function (extList) {
+    browser.management.getAll(function (extList) {
         var matchExts = extList.filter(function (ext) {
             return util.matchText(key, ext.name) && ext.enabled === enabled;
         });
@@ -74,7 +75,7 @@ function sortExtFn(a, b) {
 }
 
 function sortExtensions(matchExts, key, callback) {
-    chrome.storage.sync.get('ext', function (data) {
+    browser.storage.sync.get('ext', function (data) {
         var sExts = data.ext;
 
         if (!sExts) {
@@ -106,7 +107,7 @@ function sortExtensions(matchExts, key, callback) {
 }
 
 function addRecord(type, query, id) {
-    chrome.storage.sync.get(type, function (data) {
+    browser.storage.sync.get(type, function (data) {
         // data = {ext: {}}
         var extObj = data;
         // info = {id: {}};
@@ -136,7 +137,7 @@ function addRecord(type, query, id) {
             }
         }
 
-        chrome.storage.sync.set(extObj, function () {});
+        browser.storage.sync.set(extObj, function () {});
     });
 }
 

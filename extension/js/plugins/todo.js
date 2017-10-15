@@ -7,14 +7,15 @@
 
 import $ from 'jquery'
 import request from '../common/request'
+import browser from 'webextension-polyfill'
 
 var version = 2;
 var name = 'todolist';
 var key = 'todo';
 var type = 'keyword';
-var icon = chrome.extension.getURL('img/todo.png');
-var title = chrome.i18n.getMessage(name + '_title');
-var subtitle = chrome.i18n.getMessage(name + '_subtitle');
+var icon = browser.extension.getURL('img/todo.png');
+var title = browser.i18n.getMessage(name + '_title');
+var subtitle = browser.i18n.getMessage(name + '_subtitle');
 var commands = [{
     key,
     type,
@@ -43,7 +44,7 @@ function removeTodo(id) {
             return todo.id !== id;
         });
 
-        chrome.storage.sync.set({
+        browser.storage.sync.set({
             todo: todos
 
         }, function () {
@@ -70,7 +71,7 @@ function addTodo(todo) {
 
         });
 
-        chrome.storage.sync.set({
+        browser.storage.sync.set({
             todo: todos
 
         }, function () {
@@ -88,7 +89,7 @@ function noticeBg2refresh() {
 }
 
 function getTodos(callback) {
-    chrome.storage.sync.get('todo', function (results) {
+    browser.storage.sync.get('todo', function (results) {
         var todos = results.todo;
 
         callback(todos);
