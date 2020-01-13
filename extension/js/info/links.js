@@ -10,19 +10,28 @@ const aboutLinks = {
             url: 'http://oksteward.com'
         },
         {
-            title: '开发者网站',
-            desc: 'tomasy 的博客',
-            url: 'http://tomasy.me'
-        },
-        {
-            title: '帮助文档',
-            desc: '详细的 Steward 帮助文档',
-            url: 'http://oksteward.com/steward-document-zh/'
+            title: '论坛',
+            desc: 'Steward 论坛: 有问题或建议可以上这里交流',
+            url: 'http://bbs.oksteward.com'
         },
         {
             title: '攻略',
             desc: '看了攻略，才能更好的了解 Steward 的精髓所在',
-            url: 'http://oksteward.com/steward-document-zh/%E6%94%BB%E7%95%A5.html'
+            url: 'http://oksteward.com/steward-documents/zh/articles.html'
+        },
+        {
+            title: '帮助文档',
+            desc: '详细的 Steward 帮助文档',
+            url: 'http://oksteward.com/steward-documents/zh/'
+        },
+        {
+            title: 'QQ群',
+            desc: '575397892'
+        },
+        {
+            title: 'Telegram',
+            desc: '加入 Steward Telegram 频道',
+            url: 'https://t.me/chromesteward'
         },
         {
             title: '项目',
@@ -35,9 +44,9 @@ const aboutLinks = {
             url: 'https://github.com/solobat/Steward/issues'
         },
         {
-            title: '交流',
-            desc: '加入 Steward Telegram 频道',
-            url: 'https://t.me/chromesteward'
+            title: '开发者网站',
+            desc: 'tomasy 的博客',
+            url: 'http://tomasy.me'
         }
     ],
     en: [
@@ -64,12 +73,12 @@ const upLinks = {
         {
             title: '赞助: Steward 开发者',
             desc: '如果你觉得 Steward 还不错，确实提高了你的效率的话......',
-            url: 'http://oksteward.com'
+            url: 'http://oksteward.com/donate.html'
         },
         {
             title: 'Star: Steward on Github',
             desc: 'Stars 是程序员的通行证',
-            icon: chrome.extension.getURL('img/github.png'),
+            icon: chrome.extension.getURL('iconfont/github.svg'),
             url: 'https://github.com/solobat/Steward'
         },
         {
@@ -81,31 +90,31 @@ const upLinks = {
         {
             title: '其它作品：单词小卡片微信小程序',
             desc: 'tomasy 的作品，必是灵感之作 - 随心制作小卡片，云端保存，分享+1，传递+1',
-            icon: chrome.extension.getURL('img/wxcard.jpg'),
+            icon: chrome.extension.getURL('iconfont/miniapp.svg'),
             url: 'https://minapp.com/miniapp/4333/'
         },
         {
             title: '点赞评论: 少数派文章',
             desc: '陆续会有一系列的跟 Steward 相关的文章会发布在上面',
-            icon: chrome.extension.getURL('img/sspai.png'),
+            icon: chrome.extension.getURL('iconfont/sspai.svg'),
             url: 'https://sspai.com/user/784469/posts'
         },
         {
             title: '点赞评论: Chrome Web Store',
             desc: '让更多的人知道 Steward',
-            icon: chrome.extension.getURL('img/chrome.png'),
+            icon: chrome.extension.getURL('iconfont/chrome.svg'),
             url: 'https://chrome.google.com/webstore/detail/dnkhdiodfglfckibnfcjbgddcgjgkacd/reviews'
         },
         {
             title: '关注: Steward 开发者微博',
             desc: '关注开发者动态，了解更多 Steward 的技巧',
-            icon: chrome.extension.getURL('img/weibo.png'),
+            icon: chrome.extension.getURL('iconfont/weibo.svg'),
             url: 'https://weibo.com/soloooo?is_all=1'
         },
         {
             title: '关注: Steward 开发者知乎',
             desc: '关注开发者动态，了解更多 Steward 的技巧',
-            icon: chrome.extension.getURL('img/zhihu.png'),
+            icon: chrome.extension.getURL('iconfont/zhihu.svg'),
             url: 'https://www.zhihu.com/people/woodpea'
         }
     ],
@@ -118,13 +127,13 @@ const upLinks = {
         {
             title: 'Star: Steward on Github',
             desc: "Stars is the programmer's pass",
-            icon: chrome.extension.getURL('img/github.png'),
+            icon: chrome.extension.getURL('iconfont/github.svg'),
             url: 'https://github.com/solobat/Steward'
         },
         {
             title: 'Like and comment: Chrome Web Store',
             desc: 'Let more people know Steward',
-            icon: chrome.extension.getURL('img/chrome.png'),
+            icon: chrome.extension.getURL('iconfont/svg.png'),
             url: 'https://chrome.google.com/webstore/detail/dnkhdiodfglfckibnfcjbgddcgjgkacd/reviews'
         }
     ]

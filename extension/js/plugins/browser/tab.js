@@ -7,52 +7,58 @@
 import util from '../../common/util'
 import Toast from 'toastr'
 import _ from 'underscore'
+import browser from 'webextension-polyfill'
 
-const version = 6;
-const name = 'locateTab';
+const version = 7;
+const name = 'tabs';
 const keys = [
     { key: 'tab' },
     { key: 'tabc', shiftKey: true, allowBatch: true },
-    { key: 'tabm' }
+    { key: 'tabm' },
+    { key: 'tabp', allowBatch: true },
+    { key: 'mute' }
 ];
 const type = 'keyword';
-const icon = chrome.extension.getURL('img/tab.png');
+const icon = chrome.extension.getURL('iconfont/tab.svg');
 const title = chrome.i18n.getMessage(`${name}_title`);
 const commands = util.genCommands(name, icon, keys, type);
 
-function getTabsByWindows(query, win) {
-    return new Promise(resolve => {
-        chrome.tabs.getAllInWindow(win.id, function (tabs) {
-            const tabList = tabs.filter(function (tab) {
-                return util.matchText(query, `${tab.title}${tab.url}`);
-            });
-
-            resolve(tabList);
-        });
-    });
-}
-
 function getAllTabs(query, callback) {
-    chrome.windows.getAll(function (wins) {
-        if (!wins.length) {
-            return;
-        }
-        const tasks = [];
+    chrome.windows.getAll({ populate: true }, function (wins) {
+        if (wins.length) {
+            let curWin;
 
-        for (let i = 0, len = wins.length; i < len; i = i + 1) {
-            tasks.push(getTabsByWindows(query, wins[i]));
-        }
+            curWin = wins.find(win => win.focused);
 
-        Promise.all(tasks).then(resp => {
-            callback(_.flatten(resp));
-        });
+            function getTabs() {
+                const tabList = curWin.tabs.filter(function (tab) {
+                    return util.matchText(query, `${tab.title}${tab.url}`);
+                });
+
+                callback(tabList);
+            }
+
+            if (!curWin) {
+                // popup mode
+                chrome.windows.getLastFocused({ populate: true }, result => {
+                    curWin = result;
+
+                    getTabs();
+                })
+            } else {
+                getTabs();
+            }
+        } else {
+            callback([]);
+        }
     });
 }
 
 function getListByCommand(rawList, command) {
     let list;
+    const { orkey } = command;
 
-    if (command.orkey === 'tabm') {
+    if (orkey === 'tabm' || orkey === 'tabp' || orkey === 'mute') {
         list = _.sortBy(rawList, 'active').reverse();
     } else {
         list = _.sortBy(rawList, 'active');
@@ -78,8 +84,10 @@ function dataFormat(rawList, command) {
             id: item.id,
             icon: item.favIconUrl || chrome.extension.getURL('img/icon.png'),
             title: tabTitle,
+            muted: item.mutedInfo.muted,
             desc,
-            isWarn: item.active
+            isWarn: item.active,
+            raw: item
         };
     });
 }
@@ -98,12 +106,6 @@ function onInput(query, command) {
     } else {
         return queryTabs(query, command);
     }
-}
-
-function locateTab(id) {
-    chrome.tabs.update(id, {
-        active: true
-    });
 }
 
 function removeTabs(ids) {
@@ -125,14 +127,16 @@ function moveTab(tabId, query) {
             });
         });
     } else {
-        Toast.warning('The input is not a valid index');
+        Toast.warning(chrome.i18n.getMessage('tab_warning_invalidindex'));
         return Promise.resolve();
     }
 }
 
-function onEnter(item, {key, orkey}, query, shiftKey, list) {
+function onEnter(item, {key, orkey}, query, { shiftKey }, list) {
     if (orkey === 'tab') {
-        locateTab(item.id);
+        updateTab(item.id, {
+            active: true
+        });
     } else if (orkey === 'tabc') {
         let items;
 
@@ -163,15 +167,33 @@ function onEnter(item, {key, orkey}, query, shiftKey, list) {
         });
     } else if (orkey === 'tabm') {
         return moveTab(item.id, query);
+    } else if (orkey === 'tabp') {
+        const exces = [
+            tab => updateTab(tab.id, { pinned: !tab.raw.pinned }),
+            tab => updateTab(tab.id, { pinned: !tab.raw.pinned })
+        ];
+        return util.batchExecutionIfNeeded(shiftKey, exces, [list, item]).then(() => '');
+    } else if (orkey === 'mute') {
+        updateTab(item.id, {
+            muted: !item.muted
+        }).then(() => {
+            window.stewardApp.refresh();
+        });
     }
+}
+
+function updateTab(id, updateProperties) {
+    return browser.tabs.update(id, updateProperties);
 }
 
 export default {
     version,
     name: 'Tabs',
+    category: 'browser',
     icon,
     title,
     commands,
     onInput,
-    onEnter
+    onEnter,
+    canDisabled: false
 };

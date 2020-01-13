@@ -1,9 +1,21 @@
 
 .steward-main {
     position: fixed;
-    z-index: 10000000;
+    z-index: 2222222222;
     top: 60px;
     left: 50%;
-    width: 510px;
+    width: 530px;
     margin-left: -255px;
+
+    &.newtab {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        margin-left: 0;
+    }
+}
+
+.base0E {
+    color: #f2777a;
 }

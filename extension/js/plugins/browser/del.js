@@ -10,7 +10,7 @@ const version = 2;
 const name = 'deleteExtension';
 const key = 'del';
 const type = 'keyword';
-const icon = chrome.extension.getURL('img/del.png');
+const icon = chrome.extension.getURL('iconfont/del.svg');
 const title = chrome.i18n.getMessage(`${name}_title`);
 const subtitle = chrome.i18n.getMessage(`${name}_subtitle`);
 const commands = [{
@@ -65,16 +65,18 @@ function onInput(query) {
 
 function onEnter(item) {
     uninstall(item.id, () => {
-        this.refresh();
+        window.stewardApp.refresh();
     });
 }
 
 export default {
     version,
     name: 'Delete Extension',
+    category: 'browser',
     icon,
     title,
     commands,
     onInput,
-    onEnter
+    onEnter,
+    canDisabled: false
 };

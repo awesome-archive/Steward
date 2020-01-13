@@ -1,12 +1,90 @@
 {
     "extName": {
-        "message": "扩展管家/应用启动/标签管理/历史记录查询/alfred"
+        "message": "全能启动器 - Steward"
+    },
+    "extNamePlus": {
+        "message": "全能启动器 - Steward Plus"
     },
     "extDesc": {
         "message": "启动器/便捷管理扩展/应用/标签/历史记录等"
     },
     "pageboxDesc": {
         "message": "在页面上启用"
+    },
+    "general_shortcuts_pageboxShortcut_0_cmd": {
+        "message": "快捷键0"
+    },
+    "general_shortcuts_pageboxShortcut_1_cmd": {
+        "message": "快捷键1"
+    },
+    "general_shortcuts_pageboxShortcut_2_cmd": {
+        "message": "快捷键2"
+    },
+    "general_shortcuts_pageboxShortcut_3_cmd": {
+        "message": "快捷键3"
+    },
+    "general_shortcuts_pageboxShortcut_4_cmd": {
+        "message": "快捷键4"
+    },
+    "general_shortcuts_pageboxShortcut_5_cmd": {
+        "message": "快捷键5"
+    },
+    "general_shortcuts_pageboxShortcut_6_cmd": {
+        "message": "快捷键6"
+    },
+    "general_shortcuts_pageboxShortcut_7_cmd": {
+        "message": "快捷键7"
+    },
+    "general_shortcuts_pageboxShortcut_8_cmd": {
+        "message": "快捷键8"
+    },
+    "general_shortcuts_pageboxShortcut_9_cmd": {
+        "message": "快捷键9"
+    },
+    "save_ok": {
+        "message": "保存成功!"
+    },
+    "add_ok": {
+        "message": "添加成功!"
+    },
+    "delete_ok": {
+        "message": "删除成功!"
+    },
+    "delete_ok_tpl": {
+        "message": "删除 {{text}} 成功!"
+    },
+    "set_ok": {
+        "message": "设置成功!"
+    },
+    "toggle_ok": {
+        "message": "切换 {{text}} 成功!"
+    },
+    "confirm_delete_tpl": {
+        "message": "这个操作将永久删除此{{text}}，是否继续？"
+    },
+    "check_form": {
+        "message": "请检查表单"
+    },
+    "file_content_error": {
+        "message": "文件内容错误!"
+    },
+    "file_type_wrong": {
+        "message": "文件格式不正确!"
+    },
+    "import_config_ok": {
+        "message": "导入 Steward 配置成功，页面即将刷新！"
+    },
+    "import_config_failed": {
+        "message": "导入数据失败，可能是由于上传中断或错误的数据文件！"
+    },
+    "reset_config_confirm": {
+        "message": "这个操作将重置你的 Steward 配置，是否继续？"
+    },
+    "reset_config_ok": {
+        "message": "重置 Steward 配置成功，页面即将刷新!"
+    },
+    "not_add_repeatedly": {
+        "message": "不能重复添加!"
     },
     "bookmark_title": {
         "message": "查找书签"
@@ -128,6 +206,27 @@
     "note_notes_subtitle": {
         "message": "查看所有笔记，Enter 复制，Shift + Enter 删除"
     },
+    "diary_title": {
+        "message": "聊天式日记"
+    },
+    "diary_subtitle": {
+        "message": "一次一句，自动按日期归档"
+    },
+    "diary_say_title": {
+        "message": "写日记"
+    },
+    "diary_say_subtitle": {
+        "message": "像聊天一样记日记，按 Enter 添加一条，按 Shift + Enter 删除选中的条目"
+    },
+    "diary_diary_title": {
+        "message": "日记列表"
+    },
+    "diary_diary_subtitle": {
+        "message": "按 Enter 下载日记，按 Shift + Enter 下载日记并删除"
+    },
+    "diary_warning_notempty": {
+        "message": "总得写点儿什么!"
+    },
     "offExtension_title": {
         "message": "禁用扩展/App"
     },
@@ -158,29 +257,44 @@
     "setOption_subtitle": {
         "message": "查找并设置扩展"
     },
-    "locateTab_title": {
+    "tabs_title": {
         "message": "跳转到标签页"
     },
-    "locateTab_subtitle": {
+    "tabs_subtitle": {
         "message": "查找并跳转至标签页"
     },
-    "locateTab_tab_title": {
+    "tabs_tab_title": {
         "message": "跳转到标签页"
     },
-    "locateTab_tab_subtitle": {
+    "tabs_tab_subtitle": {
         "message": "查找并跳转至标签页"
     },
-    "locateTab_tabc_title": {
+    "tabs_tabc_title": {
         "message": "关闭一个标签页"
     },
-    "locateTab_tabc_subtitle": {
+    "tabs_tabc_subtitle": {
         "message": "查找并关闭一(多)个标签页"
     },
-    "locateTab_tabm_title": {
+    "tabs_tabm_title": {
         "message": "移动选中的tab"
     },
-    "locateTab_tabm_subtitle": {
+    "tabs_tabm_subtitle": {
         "message": "请输入从 >=1 的数字，0则移动到window末尾"
+    },
+    "tabs_mute_title": {
+        "message": "Mute Tab"
+    },
+    "tabs_mute_subtitle": {
+        "message": "切换选中 Tab 的 muted 状态"
+    },
+    "tabs_tabp_title": {
+        "message": "切换 tab 的锁定状态"
+    },
+    "tabs_tabp_subtitle": {
+        "message": "查找 tabs 并切换 tab 的锁定状态"
+    },
+    "tab_warning_invalidindex": {
+        "message": "无效的数字"
     },
     "todolist_title": {
         "message": "添加todo"
@@ -248,17 +362,23 @@
     "urlblock_bk8_subtitle": {
         "message": "屏蔽指定网址8小时"
     },
+    "urlblock_bkseturl_title": {
+        "message": "设置被屏蔽网站的替换页面"
+    },
+    "urlblock_bkseturl_subtitle": {
+        "message": "输入 url，比如 chrome://newtab"
+    },
     "urlblock_unbk_subtitle": {
         "message": "按 Enter 键或 Return 键可以解除屏蔽"
     },
     "urlblock_unbk8_subtitle": {
-        "message": "屏蔽8小时后按 Enter 键或 Return 键可以解除屏蔽"
+        "message": "屏蔽8小时后按 Enter 键或 Return 键才能解除屏蔽"
     },
     "youdao_title": {
-        "message": "有道翻译"
+        "message": "查词翻译"
     },
     "youdao_subtitle": {
-        "message": "使用有道翻译你想知道的单词或短语..."
+        "message": "使用谷歌翻译你想知道的单词或短语..."
     },
     "weather_title": {
         "message": "查询城市天气"
@@ -266,11 +386,77 @@
     "weather_subtitle": {
         "message": "输入城市名，查询天气、指数、pm2.5..."
     },
+    "coin_coin_title": {
+        "message": "查询数字货币信息"
+    },
+    "coin_coin_subtitle": {
+        "message": "输入btc/eth/eos/ft等，查询全球价格..."
+    },
+    "coin_coins_title": {
+        "message": "查询数字货币列表"
+    },
+    "coin_coins_subtitle": {
+        "message": "输入数字货币名称/标识等进行查询"
+    },
     "openurl_title": {
         "message": "打开输入的网址"
     },
     "openurl_subtitle": {
         "message": "打开输入的网址"
+    },
+    "spm_title": {
+        "message": "Steward 插件管理"
+    },
+    "spm_subtitle": {
+        "message": "list 查看所有，install 安装, uninstall 卸载"
+    },
+    "spm_list_title": {
+        "message": "spm list"
+    },
+    "spm_list_subtitle": {
+        "message": "Steward 插件列表，数据来自 https://github.com/steward-launcher/steward-plugins"
+    },
+    "spm_install_title": {
+        "message": "spm install"
+    },
+    "spm_install_subtitle": {
+        "message": "Steward 插件安装"
+    },
+    "spm_uninstall_title": {
+        "message": "spm uninstall"
+    },
+    "spm_uninstall_subtitle": {
+        "message": "Steward 插件卸载"
+    },
+    "wsm_title": {
+        "message": "Steward websites 管理"
+    },
+    "wsm_subtitle": {
+        "message": "list 查看所有，install 安装, uninstall 卸载"
+    },
+    "wsm_create_title": {
+        "message": "wsm create"
+    },
+    "wsm_create_subtitle": {
+        "message": "为当前站点创建 website 配置"
+    },
+    "wsm_list_title": {
+        "message": "wsm list"
+    },
+    "wsm_list_subtitle": {
+        "message": "Steward website 列表，数据来自 https://github.com/steward-launcher/steward-websites"
+    },
+    "wsm_install_title": {
+        "message": "wsm install"
+    },
+    "wsm_install_subtitle": {
+        "message": "Steward website 安装"
+    },
+    "wsm_uninstall_title": {
+        "message": "wsm uninstall"
+    },
+    "wsm_uninstall_subtitle": {
+        "message": "Steward website 卸载"
     },
     "newtab_title": {
         "message": "New Tab 的一些本地设置"
@@ -302,29 +488,71 @@
     "newtab_newTabTitle_subtitle": {
         "message": "在弹出框里输入你要的标题"
     },
+    "newtab_newTabUseFilter_title": {
+        "message": "毛玻璃效果"
+    },
+    "newtab_newTabUseFilter_subtitle": {
+        "message": "切换新标签页功能区是否使用毛玻璃效果"
+    },
     "wallpaper_title": {
         "message": "New Tab 壁纸快捷操作"
     },
     "wallpaper_subtitle": {
         "message": "query 为空时，可以保存、刷新，不为空时可以将 query 作为新的壁纸添加到库中"
     },
+    "wallpaper_wp_title": {
+        "message": "New Tab 壁纸快捷操作"
+    },
+    "wallpaper_wp_subtitle": {
+        "message": "query 为空时，可以保存、刷新，不为空时可以将 query 作为新的壁纸添加到库中"
+    },
+    "wallpaper_wps_title": {
+        "message": "选择当前壁纸"
+    },
+    "wallpaper_wps_subtitle": {
+        "message": "查询所有壁纸，Enter 设定为当前"
+    },
     "wallpaper_action_save_title": {
         "message": "保存"
     },
     "wallpaper_action_save_subtitle": {
-        "message": "保存当前壁纸 [ source ] 到你的收藏中"
+        "message": "保存当前壁纸原链接到你的收藏中"
+    },
+    "wallpaper_action_remove_title": {
+        "message": "删除"
+    },
+    "wallpaper_action_remove_subtitle": {
+        "message": "从你的收藏中删除壁纸原链接"
+    },
+    "wallpaper_action_block_title": {
+        "message": "不再显示"
+    },
+    "wallpaper_action_block_subtitle": {
+        "message": "将此壁纸加入黑名单，以后不再显示"
     },
     "wallpaper_action_refresh_title": {
         "message": "刷新"
     },
     "wallpaper_action_refresh_subtitle": {
-        "message": "刷新壁纸，来源包括 bing.com / 收藏 / picsum.photos，随机权重为 1 / 2 / 2"
+        "message": "刷新壁纸，来源包括 bing.com / 收藏 / picsum.photos / Nasa / Desktoppr，随机权重为 1 / 2 / 2 / 0.5 / 3"
+    },
+    "wallpaper_action_upload_title": {
+        "message": "上传到微博图床并保存"
+    },
+    "wallpaper_action_upload_subtitle": {
+        "message": "请优先选择此项，因图片链接加载较慢或可能失效 -- 需要先登录新浪微博"
     },
     "wallpaper_action_download_title": {
         "message": "下载"
     },
     "wallpaper_action_download_subtitle": {
         "message": "格式为 jpg，下载完成后可自行上传到图床，将 URL 通过 wp 命令添加到收藏里"
+    },
+    "wallpaper_action_copy_title": {
+        "message": "复制到剪贴板"
+    },
+    "wallpaper_warning_format": {
+        "message": "图片格式错误"
     },
     "search_title": {
         "message": "搜索指定内容"
@@ -339,13 +567,31 @@
         "message": "query格式为`Name|URL|Icon`, 为空时可删除选中的引擎"
     },
     "search_removese_subtitle": {
-        "message": "按 Enter 或 Retur 移动此搜索引擎"
+        "message": "按 Enter 或 Return 移除此搜索引擎"
+    },
+    "search_warning_format": {
+        "message": "搜索引擎的格式错误, <br> 正确的格式为: Name|Url|Icon,<br>"
+    },
+    "search_warning_del": {
+        "message": "是否删除选中的搜索引擎?"
     },
     "workflow_title": {
         "message": "工作流"
     },
     "workflow_subtitle": {
         "message": "执行自定义的系列命令"
+    },
+    "workflow_wf_title": {
+        "message": "工作流"
+    },
+    "workflow_wf_subtitle": {
+        "message": "执行自定义的系列命令"
+    },
+    "workflow_wfe_title": {
+        "message": "编辑工作流"
+    },
+    "workflow_wfe_subtitle": {
+        "message": "选择某条工作流以后，query 为空时 Enter 删除， query 不为空时 Enter 加入到 workflow"
     },
     "general_useInContentPage": {
         "message": "在网页中启动"
@@ -380,6 +626,24 @@
     "general_wallpaperSources": {
         "message": "壁纸来源"
     },
+    "general_enableRandomWallpaper": {
+        "message": "随机应用壁纸"
+    },
+    "general_newtabWidgets": {
+        "message": "新标签页组件"
+    },
+    "general_storeTypedQuery": {
+        "message": "存储最近的命令"
+    },
+    "general_autoCreateWebsite": {
+        "message": "自动配置 Websites"
+    },
+    "general_websiteUrls": {
+        "message": "Website 网址工具"
+    },
+    "general_websiteShareUrls": {
+        "message": "Website 分享功能"
+    },
     "tips_maxOperandsNum": {
         "message": "设置某些插件在shift + enter/click操作时所处理的最大条目数"
     },
@@ -406,6 +670,9 @@
     },
     "tips_allowBatch": {
         "message": "允许批量执行，用于workflows中，形式为`1-n | all | n | `"
+    },
+    "tips_storeTypedQuery": {
+        "message": "输入框为空时按下向上箭头可查看最近20次输入的查询。自动显示最新的历史记录。"
     },
     "chrome_title": {
         "message": "chrome常用url"
@@ -443,6 +710,9 @@
     "custom_subtitle": {
         "message": "设置在NewTab输入框中的默认命令"
     },
+    "custom_warning_notempty": {
+        "message": "命令不能为空!"
+    },
     "random_title": {
         "message": "随机应用命令"
     },
@@ -463,5 +733,149 @@
     },
     "STORAGE_WARNING": {
         "message": "存储空间不足，不能继续添加了！"
+    },
+    "wallpaper_stoprefresh": {
+        "message": "已停止此页面的壁纸自动刷新功能"
+    },
+    "wallpaper_save_done": {
+        "message": "壁纸保存成功"
+    },
+    "wallpaper_remove_done": {
+        "message": "壁纸删除成功"
+    },
+    "wallpaper_update": {
+        "message": "壁纸刷新中..."
+    },
+    "settings_notion_workflow": {
+        "message": "工作流"
+    },
+    "settings_notion_website": {
+        "message": "网站配置"
+    },
+    "settings_notion_wallpaper": {
+        "message": "壁纸"
+    },
+    "settings_website_workflow": {
+        "message": "网站配置"
+    },
+    "settings_tabs_general": {
+        "message": "通用"
+    },
+    "settings_tabs_plugins": {
+        "message": "插件"
+    },
+    "settings_tabs_workflows": {
+        "message": "工作流"
+    },
+    "settings_tabs_websites": {
+        "message": "网站"
+    },
+    "settings_tabs_wallpapers": {
+        "message": "壁纸"
+    },
+    "settings_tabs_appearance": {
+        "message": "外观"
+    },
+    "settings_tabs_advanced": {
+        "message": "高级"
+    },
+    "settings_tabs_help": {
+        "message": "帮助"
+    },
+    "settings_tabs_update": {
+        "message": "更新"
+    },
+    "settings_blocks_commandsplugins": {
+        "message": "命令与插件"
+    },
+    "settings_blocks_operationinteraction": {
+        "message": "操作与交互"
+    },
+    "settings_blocks_websitesconfiguration": {
+        "message": "网站设置"
+    },
+    "settings_blocks_newtab": {
+        "message": "NewTab 设置"
+    },
+    "settings_blocks_performance": {
+        "message": "性能"
+    },
+    "settings_blocks_shortcutconfiguration": {
+        "message": "快捷键设置"
+    },
+    "settings_blocks_websitebaseinfo": {
+        "message": "基本信息"
+    },
+    "settings_blocks_websitenav": {
+        "message": "网站地图, 触发条件: [ 直接搜索 ] 或者 [ / ]"
+    },
+    "settings_blocks_inpagenav": {
+        "message": "页面内导航, 触发条件: [ ` ]"
+    },
+    "settings_blocks_exportimport": {
+        "message": "导入/导出"
+    },
+    "settings_blocks_socialshareconfig": {
+        "message": "社会化分享配置"
+    },
+    "settings_blocks_plugineditor": {
+        "message": "插件编辑器"
+    },
+    "settings_fields_title": {
+        "message": "标题"
+    },
+    "settings_fields_description": {
+        "message": "描述"
+    },
+    "settings_fields_content": {
+        "message": "内容"
+    },
+    "settings_fields_host": {
+        "message": "Patterns"
+    },
+    "settings_fields_siteicon": {
+        "message": "站点图标"
+    },
+    "settings_fields_paths": {
+        "message": "页面路径"
+    },
+    "settings_fields_navigations": {
+        "message": "导航"
+    },
+    "settings_fields_outlinescope": {
+        "message": "大纲范围"
+    },
+    "settings_fields_anchors": {
+        "message": "锚点"
+    },
+    "settings_fields_disable": {
+        "message": "禁用"
+    },
+    "settings_actions_save": {
+        "message": "保存"
+    },
+    "settings_actions_delete": {
+        "message": "删除"
+    },
+    "settings_actions_newworkflow": {
+        "message": "新建工作流"
+    },
+    "settings_actions_newwebsite": {
+        "message": "新建网站配置"
+    },
+    "settings_actions_applysave": {
+        "message": "应用及保存"
+    },
+    "settings_actions_reset": {
+        "message": "重置"
+    },
+    "settings_actions_export": {
+        "message": "导出"
+    },
+    "settings_actions_import": {
+        "message": "导入"
+    },
+    "settings_actions_downloadcrx": {
+        "message": "下载 CRX 文件"
     }
 }

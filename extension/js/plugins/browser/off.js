@@ -11,7 +11,7 @@ const version = 2;
 const name = 'offExtension';
 const key = 'off';
 const type = 'keyword';
-const icon = chrome.extension.getURL('img/off.png');
+const icon = chrome.extension.getURL('iconfont/off.svg');
 const title = chrome.i18n.getMessage(`${name}_title`);
 const subtitle = chrome.i18n.getMessage(`${name}_subtitle`);
 const commands = [{
@@ -35,7 +35,8 @@ function setEnabled(id, enabled) {
 function getExtensions(query, enabled, callback) {
     chrome.management.getAll(function (extList) {
         const matchExts = extList.filter(function (ext) {
-            return util.matchText(query, ext.name) && ext.enabled === enabled;
+            return ext.type === 'extension'
+                && util.matchText(query, ext.name) && ext.enabled === enabled;
         });
 
         callback(matchExts);
@@ -93,7 +94,7 @@ function getSortedList(list) {
     return list;
 }
 
-function onEnter(item, command, query, shiftKey, list) {
+function onEnter(item, command, query, { shiftKey }, list) {
     let items;
 
     if (item instanceof Array) {
@@ -103,17 +104,19 @@ function onEnter(item, command, query, shiftKey, list) {
     }
 
     const tasks = util.batchExecutionIfNeeded(shiftKey, disableExecs, [list, items]);
-    return Promise.all(tasks).then(() => {
-        return '';
+    return tasks.then(() => {
+        window.stewardApp.refresh();
     });
 }
 
 export default {
     version,
     name: 'Disable Extension',
+    category: 'browser',
     icon,
     title,
     commands,
     onInput,
-    onEnter
+    onEnter,
+    canDisabled: false
 };

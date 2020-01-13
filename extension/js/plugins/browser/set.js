@@ -10,7 +10,7 @@ const version = 2;
 const name = 'setOption';
 const key = 'set';
 const type = 'keyword';
-const icon = chrome.extension.getURL('img/set.png');
+const icon = chrome.extension.getURL('iconfont/set.svg');
 const title = chrome.i18n.getMessage(`${name}_title`);
 const subtitle = chrome.i18n.getMessage(`${name}_subtitle`);
 const commands = [{
@@ -22,19 +22,14 @@ const commands = [{
     editable: true
 }];
 
-function openOptionPage(item, cb) {
+function openOptionPage(item, keyStatus) {
     const url = item.url;
 
     if (!url) {
-        Reflect.apply(cb, null, []);
         return;
     }
 
-    chrome.tabs.create({
-        url: url
-    }, function () {
-        Reflect.apply(cb, null, []);
-    });
+    util.createTab({ url: url }, keyStatus);
 }
 
 // get all
@@ -72,18 +67,18 @@ function onInput(query) {
     });
 }
 
-function onEnter(item) {
-    openOptionPage(item, function () {
-        // cb
-    });
+function onEnter(item, command, query, keyStatus) {
+    openOptionPage(item, keyStatus);
 }
 
 export default {
     version,
     name: 'Set Extension',
+    category: 'browser',
     icon,
     title,
     commands,
     onInput,
-    onEnter
+    onEnter,
+    canDisabled: false
 };

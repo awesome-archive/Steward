@@ -11,7 +11,7 @@ const version = 4;
 const name = 'topsites';
 const key = 'site';
 const type = 'keyword';
-const icon = chrome.extension.getURL('img/topsites.png');
+const icon = chrome.extension.getURL('iconfont/topsites.svg');
 const title = chrome.i18n.getMessage(`${name}_title`);
 const subtitle = chrome.i18n.getMessage(`${name}_subtitle`);
 const commands = [{
@@ -51,7 +51,7 @@ function onInput() {
     });
 }
 
-function onEnter(item, command, query, shiftKey, list) {
+function onEnter(item, command, query, { shiftKey }, list) {
     util.batchExecutionIfNeeded(shiftKey, util.tabCreateExecs, [list, item]);
     return Promise.resolve('');
 }
@@ -59,9 +59,11 @@ function onEnter(item, command, query, shiftKey, list) {
 export default {
     version,
     name: 'Top Sites',
+    category: 'browser',
     icon,
     title,
     commands,
     onInput,
-    onEnter
+    onEnter,
+    canDisabled: false
 };

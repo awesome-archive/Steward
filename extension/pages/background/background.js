@@ -6,56 +6,20 @@
 import $ from 'jquery'
 import STORAGE from '../../js/constant/storage'
 import { getSyncConfig } from '../../js/common/config'
-import { WorkflowList } from '../../js/collection/workflow'
+import workflowHelper from '../../js/helper/workflowHelper'
 
-const Workflows = new WorkflowList();
 let config = {};
 let todos = [];
 let blockedUrls = [];
 
-const workflowHelper = {
-    create: function(info) {
-        if (info.title && info.content) {
-            const workflow = Workflows.create({
-                ...info
-            });
-
-            return workflow;
-        } else {
-            return 'no title or content';
-        }
-    },
-
-    remove: function(id) {
-        const model = Workflows.remove(id);
-        Workflows.chromeStorage.destroy(model);
-
-        return model;
-    },
-
-    update: function(attrs) {
-        const workflow = Workflows.set(attrs, {
-            add: false,
-            remove: false
+function replaceURL(req, sender) {
+    console.log('should change url...');
+    if (req.data.url) {
+        chrome.tabs.update(sender.tab.id, {
+            url: req.data.url
         });
-
-        workflow.save();
-
-        return workflow;
-    },
-
-    refresh() {
-        return Workflows.fetch();
-    },
-
-    getWorkflows: function() {
-        return Workflows.toJSON();
-    },
-
-    init: function() {
-        return workflowHelper.refresh();
     }
-};
+}
 
 function addEvents() {
     chrome.runtime.onMessage.addListener((req, sender, resp) => {
@@ -91,6 +55,9 @@ function addEvents() {
                     data: blockedUrls
                 });
                 break;
+            case 'getWorkflow':
+                resp({ msg: 'getWorkflow', data: workflowHelper.getWorkflow(req.data) });
+                break;
             case 'getWorkflows':
                 resp({ msg: 'getWorkflows', data: workflowHelper.getWorkflows() });
                 break;
@@ -102,6 +69,10 @@ function addEvents() {
                 break;
             case 'removeWorkflow':
                 resp({ msg: 'removeWorkflow', data: workflowHelper.remove(req.data) });
+                break;
+            case 'replaceURL':
+                replaceURL(req, sender);
+                resp({ msg: 'ok' });
                 break;
             default:
                 break;
@@ -127,11 +98,11 @@ function addEvents() {
     });
 
     chrome.commands.onCommand.addListener(function(command) {
-        if (command === 'open-in-content-page') {
-            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-                chrome.tabs.sendMessage(tabs[0].id, {action: "openBox"}, function() {});
-            });
-        }
+        const conf = config.general.shortcuts[command] || {cmd: ''};
+
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, {action: "openBox", cmd: conf.cmd}, function() {});
+        });
     });
 }
 

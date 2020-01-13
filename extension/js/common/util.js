@@ -9,6 +9,7 @@ import Toast from 'toastr'
 import fuzzaldrinPlus from 'fuzzaldrin-plus'
 import '../../../node_modules/toastr/toastr.scss'
 import { QUOTA_BYTES_PER_ITEM } from '../constant/number'
+import URLSearchParams from '@ungap/url-search-params'
 
 function getPinyin(name) {
     return pinyin(name, {
@@ -51,7 +52,7 @@ const simpleCommand = ({key, orkey}) => {
 
 function genCommands(name, icon, items, type) {
     return items.map(item => {
-        const {key, editable, keyname, allowBatch, shiftKey} = item;
+        const {key, editable, keyname, allowBatch, shiftKey, workflow, weight} = item;
 
         return {
             key: item.key,
@@ -61,6 +62,8 @@ function genCommands(name, icon, items, type) {
             subtitle: chrome.i18n.getMessage(`${name}_${(keyname || key)}_subtitle`),
             icon,
             allowBatch,
+            workflow,
+            weight,
             shiftKey,
             editable: editable !== false
         };
@@ -73,6 +76,39 @@ function getDefaultResult(command) {
         icon: command.icon,
         title: command.title,
         desc: command.subtitle
+    }];
+}
+
+const loadingIcon = chrome.extension.getURL('iconfont/loading.svg');
+
+function getLoadingResult(command) {
+    let theCommand;
+
+    if (!command) {
+        theCommand = window.stewardApp.getCurrentCommand();
+    }
+
+    if (theCommand) {
+        return [{
+            icon: theCommand.icon,
+            title: theCommand.title,
+            desc: 'Loading...',
+            isDefault: true
+        }];
+    } else {
+        return [{
+            icon: loadingIcon,
+            title: 'Loading....',
+            isDefault: true
+        }];
+    }
+}
+
+function getEmptyResult(command, msg) {
+    return [{
+        isDefault: true,
+        icon: command.icon,
+        title: msg || 'No query results...'
     }];
 }
 
@@ -128,7 +164,7 @@ const wrapWithMaxNumIfNeeded = (field,
     return ret;
 }
 
-const batchExecutionIfNeeded = (predicate, [exec4batch, exec], [list, item],
+const batchExecutionIfNeeded = (predicate, [exec4batch, exec], [list, item], keyStatus,
     maxOperandsNum = window.stewardCache.config.general.maxOperandsNum) => {
     const results = [];
 
@@ -137,10 +173,28 @@ const batchExecutionIfNeeded = (predicate, [exec4batch, exec], [list, item],
 
         results.push(list.slice(0, num).forEach(exec4batch));
     } else {
-        results.push(exec(item));
+        results.push(exec(item, keyStatus));
     }
 
-    return results;
+    return Promise.all(results);
+}
+
+const createTab = (item, keyStatus = {}) => {
+    const { mode, inContent } = window.stewardApp;
+
+    if (mode === 'popup' && !inContent) {
+        chrome.tabs.create({ url: item.url });
+    } else {
+        if (keyStatus.metaKey) {
+            chrome.tabs.getCurrent(tab => {
+                chrome.tabs.update(tab.id, {
+                    url: item.url
+                });
+            });
+        } else {
+            chrome.tabs.create({ url: item.url });
+        }
+    }
 }
 
 const tabCreateExecs = [
@@ -148,8 +202,9 @@ const tabCreateExecs = [
         chrome.tabs.create({ url: item.url, active: false });
         window.slogs.push(`open ${item.url}`);
     },
-    item => {
-        chrome.tabs.create({ url: item.url });
+    (item, keyStatus = {}) => {
+        createTab(item, keyStatus);
+        
         window.slogs.push(`open ${item.url}`);
     }
 ];
@@ -162,16 +217,18 @@ function getLang() {
     }
 }
 
-function getDocumentURL(name) {
+function getDocumentURL(name, category) {
     const lang = getLang();
-    const baseUrl = `http://oksteward.com/steward-document-${lang}/plugins`;
-    const exts = ['wordcard'];
+    let baseUrl;
+    const fixedName = name.replace(/\s/, '-');
 
-    if (exts.indexOf(name) === -1) {
-        return `${baseUrl}/browser/${name}.html`;
+    if (lang === 'en') {
+        baseUrl = `http://oksteward.com/steward-documents/plugins/${category}`;
     } else {
-        return `${baseUrl}/browser/extension/${name}.html`;
+        baseUrl = `http://oksteward.com/steward-documents/zh/plugins/${category}`;
     }
+
+    return `${baseUrl}/${fixedName}.html`;
 }
 
 function getBytesInUse(key) {
@@ -201,7 +258,7 @@ function isStorageSafe(key) {
 }
 
 function shouldSupportMe() {
-    const nums = [6, 66, 666];
+    const nums = [6, 8, 66, 88, 666, 888];
     const random = Math.floor(Math.random() * 1000);
     console.log(random);
 
@@ -218,13 +275,53 @@ function simTemplate(tpl, data) {
     });
 }
 
+const getData = field => () => {
+    return new Promise((resolve, reject) => {
+        chrome.runtime.sendMessage({
+            action: field
+        }, resp => {
+            if (resp) {
+                resolve(resp.data);
+            } else {
+                reject(null);
+            }
+        });
+    });
+}
+
+function getTplMsg(tplKey, data) {
+    return simTemplate(chrome.i18n.getMessage(tplKey), data);
+}
+
+function getTextMsg(tplKey, textKey) {
+    const data = {
+        text: chrome.i18n.getMessage(textKey)
+    };
+
+    return getTplMsg(tplKey, data);
+}
+
+function getURLParams(keys, search = window.location.search) {
+    const searchParams = new URLSearchParams(search);
+
+    return keys.reduce((obj, key) => {
+      obj[key] = searchParams.get(key);
+
+      return obj;
+    }, {});
+}
+
 export default {
     matchText,
     isMac,
     guid,
     simpleCommand,
+    getTplMsg,
+    getTextMsg,
     genCommands,
     getDefaultResult,
+    getLoadingResult,
+    getEmptyResult,
     copyToClipboard,
     getMatches,
     getParameterByName,
@@ -236,5 +333,9 @@ export default {
     getDocumentURL,
     isStorageSafe,
     shouldSupportMe,
-    simTemplate
+    simTemplate,
+    getData,
+    createTab,
+    toast: Toast,
+    getURLParams
 };

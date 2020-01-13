@@ -10,7 +10,7 @@ const version = 4;
 const name = 'history';
 const key = 'his';
 const type = 'keyword';
-const icon = chrome.extension.getURL('img/history.png');
+const icon = chrome.extension.getURL('iconfont/history.svg');
 const title = chrome.i18n.getMessage(`${name}_title`);
 const subtitle = chrome.i18n.getMessage(`${name}_subtitle`);
 const commands = [{
@@ -63,14 +63,18 @@ function dataFormat(rawList, command) {
 }
 
 function onInput(query, command) {
-    return new Promise(resolve => {
-        searchHistory(query, function (matchUrls) {
-            resolve(dataFormat(matchUrls, command));
+    if (query === '/' && window.parentHost) {
+        return `${command.key} ${window.parentHost}`;
+    } else {
+        return new Promise(resolve => {
+            searchHistory(query, function (matchUrls) {
+                resolve(dataFormat(matchUrls, command));
+            });
         });
-    });
+    }
 }
 
-function onEnter(item, command, query, shiftKey, list) {
+function onEnter(item, command, query, { shiftKey }, list) {
     util.batchExecutionIfNeeded(shiftKey, util.tabCreateExecs, [list, item]);
     return Promise.resolve('');
 }
@@ -78,9 +82,11 @@ function onEnter(item, command, query, shiftKey, list) {
 export default {
     version,
     name: 'History',
+    category: 'browser',
     icon,
     title,
     commands,
     onInput,
-    onEnter
+    onEnter,
+    canDisabled: false
 };

@@ -10,7 +10,7 @@ const version = 2;
 const name = 'runapp';
 const key = 'run';
 const type = 'keyword';
-const icon = chrome.extension.getURL('img/app.png');
+const icon = chrome.extension.getURL('iconfont/app.svg');
 const title = chrome.i18n.getMessage(`${name}_title`);
 const subtitle = chrome.i18n.getMessage(`${name}_subtitle`);
 const commands = [{
@@ -70,9 +70,11 @@ function onEnter({ id }) {
 export default {
     version,
     name: 'Run App',
+    category: 'browser',
     icon,
     title,
     commands,
     onInput,
-    onEnter
+    onEnter,
+    canDisabled: false
 };

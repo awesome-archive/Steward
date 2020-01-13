@@ -4,13 +4,14 @@
  * @email solopea@gmail.com
  */
 
+/*global EXT_TYPE */
 import util from '../../common/util'
 
 const version = 2;
 const name = 'viewExtension';
 const key = 'ext';
 const type = 'keyword';
-const icon = chrome.extension.getURL('img/viewext.png');
+const icon = chrome.extension.getURL('iconfont/viewext.svg');
 const title = chrome.i18n.getMessage(`${name}_title`);
 const subtitle = chrome.i18n.getMessage(`${name}_subtitle`);
 const commands = [{
@@ -22,6 +23,7 @@ const commands = [{
     shiftKey: true,
     editable: true
 }];
+const extType = EXT_TYPE === 'stewardplus' ? 'Steward Plus' : 'Steward';
 
 function getExtensions(query, callback) {
     chrome.management.getAll(function (extList) {
@@ -62,31 +64,33 @@ function dataFormat(rawList, command) {
 }
 
 function onInput(query, command) {
-    return new Promise(resolve => {
-        getExtensions(query.toLowerCase(), function (data) {
-            resolve(dataFormat(data, command));
+    if (query === '/') {
+        return `${command.key} ${extType}`;
+    } else {
+        return new Promise(resolve => {
+            getExtensions(query.toLowerCase(), function (data) {
+                resolve(dataFormat(data, command));
+            });
         });
-    });
+    }
 }
 
-function onEnter({ id, homepage }, command, query, shiftKey) {
-    if (shiftKey && homepage) {
-        chrome.tabs.create({
-            url: homepage
-        });
+function onEnter({ id, homepage }, command, query, keyStatus) {
+    if (keyStatus.shiftKey && homepage) {
+        util.createTab({ url: homepage }, keyStatus);
     } else {
-        chrome.tabs.create({
-            url: `chrome://extensions/?id=${id}`
-        });
+        util.createTab({ url: `chrome://extensions/?id=${id}` }, keyStatus);
     }
 }
 
 export default {
     version,
     name: 'View Extension',
+    category: 'browser',
     icon,
     title,
     commands,
     onInput,
-    onEnter
+    onEnter,
+    canDisabled: false
 };

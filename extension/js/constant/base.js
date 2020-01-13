@@ -1,5 +1,6 @@
 
 export const PLUGIN_TYPE = {
+    ALWAYS: 'always',
     REGEXP: 'regexp',
     KEYWORD: 'keyword',
     OTHER: 'other',
@@ -12,7 +13,8 @@ export const ITEM_TYPE = {
     PLUGINS: 'plugins',
     URL: 'url',
     COPY: 'copy',
-    ACTION: 'action'
+    ACTION: 'action',
+    APP: 'app'
 };
 
 export const MODE = {
@@ -21,10 +23,22 @@ export const MODE = {
 };
 
 export const EXTENSION = {
-    ALFRED: 'alfred',
-    STEWARD: 'steward'
+    STEWARD: 'steward',
+    STEWARDPLUS: 'stewardplus'
 };
 
-export const alfredTabs = ['Alfred', 'General', 'Plugins', 'Workflows', 'Advanced', 'Help', 'Update', 'About'];
+export const PLUGIN_STATUS = {
+    NOTINSTALL: 0,
+    NEWVESION: 1,
+    INSTALLED: 2
+};
 
-export const stewardTabs = ['Steward', 'General', 'Plugins', 'Workflows', 'Appearance', 'Advanced', 'Help', 'Update', 'About'];
+export const WEBSITE_STATUS = {
+    NOTINSTALL: 0,
+    NEWVESION: 1,
+    INSTALLED: 2
+};
+
+export const stewardTabs = ['Steward', 'General', 'Plugins', 'Workflows', 'Websites', 'Wallpapers', 'Appearance', 'Advanced', 'Help', 'Update'];
+
+export const stewardPlusTabs = ['Steward', 'General', 'Plugins', 'Workflows', 'Websites', 'Wallpapers', 'Appearance', 'Advanced', 'Help', 'Update'];

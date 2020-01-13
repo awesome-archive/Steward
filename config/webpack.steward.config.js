@@ -8,6 +8,8 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default
 const cssNano = require('cssnano')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const isProduction = process.env.NODE_ENV === 'production'
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MonacoEditorPlugin = require('monaco-editor-webpack-plugin')
 
 const config = {
   entry: {
@@ -31,6 +33,10 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+      {
         test: /\.html$/,
         use: ['html-loader']
       },
@@ -52,7 +58,7 @@ const config = {
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
-        loader: 'file-loader'
+        loader: 'file-loader?name=[name].[ext]&outputPath=iconfont/&publicPath=./'
       },
       {
         test: /\.(jpe?g|png|gif)$/i,
@@ -64,51 +70,56 @@ const config = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      EXT_TYPE: JSON.stringify("steward")
+      EXT_TYPE: JSON.stringify("steward"),
+      PLATFORM: JSON.stringify("chrome")
     }),
+    new VueLoaderPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
+    new MonacoEditorPlugin({
+      languages: ['javascript', 'css', 'html', 'typescript', 'json']
+    }),
     //Generate an HTML5 file that includes all webpack bundles(includes css & js) in the body using script tags
     new HtmlWebpackPlugin({
       title: 'Steward - Content',
       template: './extension/pages/content/content.html',
       filename: 'content.html',
-      chunks: ['content']
+      chunks: ['manifest', 'vendor', 'content']
     }),
     new HtmlWebpackPlugin({
       title: 'Steward - Extension',
       template: './extension/pages/steward/steward.html',
       filename: 'steward.html',
-      chunks: ['steward']
+      chunks: ['manifest', 'vendor', 'steward']
     }),
     new HtmlWebpackPlugin({
       title: 'Steward - Background',
       template: './extension/pages/background/background.html',
       filename: 'background.html',
-      chunks: ['background']
+      chunks: ['manifest', 'vendor', 'background']
     }),
     new HtmlWebpackPlugin({
       title: 'Steward - Popup',
       template: './extension/pages/popup/popup.html',
       filename: 'popup.html',
-      chunks: ['popup']
+      chunks: ['manifest', 'vendor', 'popup']
     }),
     new HtmlWebpackPlugin({
       title: 'Steward - Options',
       template: './extension/pages/options/options.html',
       filename: 'options.html',
-      chunks: ['options']
+      chunks: ['manifest', 'vendor', 'options']
     }),
     new HtmlWebpackPlugin({
       title: 'Steward - Login',
       template: './extension/pages/login/login.html',
       filename: 'login.html',
-      chunks: ['login']
+      chunks: ['manifest', 'vendor', 'login']
     }),
     new HtmlWebpackPlugin({
       title: 'Steward - URLBlock',
       template: './extension/pages/urlblock/urlblock.html',
       filename: 'urlblock.html',
-      chunks: ['urlblock']
+      chunks: ['manifest', 'vendor', 'urlblock']
     }),
     //Create our CSS bundles by our entry points names (Ex: popup.css, options.css)
     new ExtractTextPlugin({
@@ -116,11 +127,41 @@ const config = {
     }),
     new CopyWebpackPlugin([
       {from: 'extension/img', to: 'img'},
+      {from: 'extension/svg', to: 'iconfont'},
       {from: 'extension/css', to: 'css'},
       {from: 'extension/scripts', to: 'scripts'},
       {from: 'extension/_locales', to: '_locales'},
-      {from: 'extension/manifest.json'}
+      {from: 'extension/manifest.json', to: 'manifest.json'}
     ]),
+    // split vendor js into its own file
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks (module) {
+        // any required modules inside node_modules are extracted to vendor
+        return (
+          module.resource &&
+          /\.js$/.test(module.resource) &&
+          module.resource.indexOf(
+            path.join(__dirname, '../node_modules')
+          ) === 0
+        )
+      }
+    }),
+    // extract webpack runtime and module manifest to its own file in order to
+    // prevent vendor hash from being updated whenever app bundle is updated
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      minChunks: Infinity
+    }),
+    // This instance extracts shared chunks from code splitted chunks and bundles them
+    // in a separate chunk, similar to the vendor chunk
+    // see: https://webpack.js.org/plugins/commons-chunk-plugin/#extra-async-commons-chunk
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'app',
+      async: 'vendor-async',
+      children: true,
+      minChunks: 3
+    }),
     new ImageminPlugin({test: /\.(jpe?g|png|gif|svg)$/i})
   ]
 }

@@ -1,6 +1,6 @@
 import * as apiUtils from '../utils/api'
 
-export const root = 'http://www.bing.com';
+export const root = 'https://www.bing.com';
 const baseParams = {
     format: 'js',
     idx: 0,
@@ -23,3 +23,15 @@ export const rand = () => {
         idx: getRandom()
     }));
 };
+
+const api = {
+    today,
+    rand
+}
+
+export default {
+    name: 'bing',
+    api: method => () => api[method](),
+    handle: result => (root + result.images[0].url),
+    weight: 1
+}

@@ -1,12 +1,90 @@
 {
     "extName": {
-        "message": "extension management/app launcher/tab management"
+        "message": "Steward"
+    },
+    "extNamePlus": {
+        "message": "Steward Plus"
     },
     "extDesc": {
         "message": "a command launcher with extension management/app launcher/tab management/history search/alfred"
     },
     "pageboxDesc": {
         "message": "Open launcher in page"
+    },
+    "general_shortcuts_pageboxShortcut_0_cmd": {
+        "message": "Shortcut 0"
+    },
+    "general_shortcuts_pageboxShortcut_1_cmd": {
+        "message": "Shortcut 1"
+    },
+    "general_shortcuts_pageboxShortcut_2_cmd": {
+        "message": "Shortcut 2"
+    },
+    "general_shortcuts_pageboxShortcut_3_cmd": {
+        "message": "Shortcut 3"
+    },
+    "general_shortcuts_pageboxShortcut_4_cmd": {
+        "message": "Shortcut 4"
+    },
+    "general_shortcuts_pageboxShortcut_5_cmd": {
+        "message": "Shortcut 5"
+    },
+    "general_shortcuts_pageboxShortcut_6_cmd": {
+        "message": "Shortcut 6"
+    },
+    "general_shortcuts_pageboxShortcut_7_cmd": {
+        "message": "Shortcut 7"
+    },
+    "general_shortcuts_pageboxShortcut_8_cmd": {
+        "message": "Shortcut 8"
+    },
+    "general_shortcuts_pageboxShortcut_9_cmd": {
+        "message": "Shortcut 9"
+    },
+    "save_ok": {
+        "message": "Save successfully!"
+    },
+    "add_ok": {
+        "message": "Add successfully!"
+    },
+    "delete_ok": {
+        "message": "Delete successfully!"
+    },
+    "delete_ok_tpl": {
+        "message": "Delete {{text}} successfully!"
+    },
+    "set_ok": {
+        "message": "Set successfully!"
+    },
+    "toggle_ok": {
+        "message": "Toggle {{text}} successfully!"
+    },
+    "confirm_delete_tpl": {
+        "message": "This operation will permanently delete the {{text}}, whether to continue?"
+    },
+    "check_form": {
+        "message": "Please check the form"
+    },
+    "file_content_error": {
+        "message": "File content is wrong!"
+    },
+    "file_type_wrong": {
+        "message": "Incorrect file type!"
+    },
+    "import_config_ok": {
+        "message": "Import successfully and this page will be reloaded!"
+    },
+    "import_config_failed": {
+        "message": "Failed to import data! This may be due to corrupted or incorrect data files."
+    },
+    "reset_config_confirm": {
+        "message": "This operation will permanently reset your configuration, whether to continue?"
+    },
+    "reset_config_ok": {
+        "message": "Reset successfully and this page will be reloaded!"
+    },
+    "not_add_repeatedly": {
+        "message": "Can not be added repeatedly!"
     },
     "bookmark_title": {
         "message": "find bookmark"
@@ -128,6 +206,27 @@
     "note_notes_subtitle": {
         "message": "Show your all notes, press Enter to copy，and press Shift + Enter to delete."
     },
+    "diary_title": {
+        "message": "Chat diary"
+    },
+    "diary_subtitle": {
+        "message": "One sentence at a time, automatically filed by date"
+    },
+    "diary_say_title": {
+        "message": "Just say it"
+    },
+    "diary_say_subtitle": {
+        "message": "Write a diary like a chat, press Enter to add one, press Shift + Enter to delete the selected entry"
+    },
+    "diary_diary_title": {
+        "message": "Diary list"
+    },
+    "diary_diary_subtitle": {
+        "message": "Press Enter to download the diary, press Shift + Enter to download the diary and delete it"
+    },
+    "diary_warning_notempty": {
+        "message": "Message cannot be empty!"
+    },
     "offExtension_title": {
         "message": "disable extension / app"
     },
@@ -158,29 +257,44 @@
     "setOption_subtitle": {
         "message": "find extension and open its option page"
     },
-    "locateTab_title": {
+    "tabs_title": {
         "message": "goto tab"
     },
-    "locateTab_subtitle": {
+    "tabs_subtitle": {
         "message": "find tab and goto it"
     },
-    "locateTab_tab_title": {
+    "tabs_tab_title": {
         "message": "goto tab"
     },
-    "locateTab_tab_subtitle": {
+    "tabs_tab_subtitle": {
         "message": "find tab and goto it"
     },
-    "locateTab_tabc_title": {
+    "tabs_tabc_title": {
         "message": "close one tab"
     },
-    "locateTab_tabc_subtitle": {
+    "tabs_tabc_subtitle": {
         "message": "find and close tab(s)"
     },
-    "locateTab_tabm_title": {
+    "tabs_tabm_title": {
         "message": "move the selected tab"
     },
-    "locateTab_tabm_subtitle": {
+    "tabs_tabm_subtitle": {
         "message": "To move the selected tab, enter a number from> = 1, while 0 moves to the end of the window"
+    },
+    "tabs_mute_title": {
+        "message": "Mute tab"
+    },
+    "tabs_mute_subtitle": {
+        "message": "Toggle the mute state of the tab"
+    },
+    "tabs_tabp_title": {
+        "message": "toggle tab's pin"
+    },
+    "tabs_tabp_subtitle": {
+        "message": "find tabs and toggle it's ping"
+    },
+    "tab_warning_invalidindex": {
+        "message": "Invalid index!"
     },
     "todolist_title": {
         "message": "add todo item"
@@ -248,6 +362,12 @@
     "urlblock_bk8_subtitle": {
         "message": "Block the specified URL for 8 hours"
     },
+    "urlblock_bkseturl_title": {
+        "message": "Set a replacement page for blocked sites"
+    },
+    "urlblock_bkseturl_subtitle": {
+        "message": "Please enter a url, such as chrome://newtab"
+    },
     "urlblock_unbk_subtitle": {
         "message": "Press Enter or Return to unblock"
     },
@@ -255,10 +375,10 @@
         "message": "Press Enter or Return after 8 hours of shielding to unblock"
     },
     "youdao_title": {
-        "message": "youdao translator"
+        "message": "google translator"
     },
     "youdao_subtitle": {
-        "message": "translate a word / phrase by youdao translator..."
+        "message": "translate a word / phrase by google translator..."
     },
     "weather_title": {
         "message": "weather"
@@ -266,11 +386,77 @@
     "weather_subtitle": {
         "message": "weather..."
     },
+    "coin_coin_title": {
+        "message": "Query digital currency info"
+    },
+    "coin_coin_subtitle": {
+        "message": "Enter btc/eth/eos/ft, etc. to check their global prices..."
+    },
+    "coin_coins_title": {
+        "message": "Query digital currency list"
+    },
+    "coin_coins_subtitle": {
+        "message": "Enter the digital currency name/identification, etc."
+    },
     "openurl_title": {
         "message": "Open the typed url"
     },
     "openurl_subtitle": {
         "message": "Open the typed url"
+    },
+    "spm_title": {
+        "message": "Steward plugin management"
+    },
+    "spm_subtitle": {
+        "message": "spm list to view all, spm install to install, spm uninstall to uninstall"
+    },
+    "spm_list_title": {
+        "message": "spm list"
+    },
+    "spm_list_subtitle": {
+        "message": "Steward plugin list, data from https://github.com/steward-launcher/steward-plugins"
+    },
+    "spm_install_title": {
+        "message": "spm install"
+    },
+    "spm_install_subtitle": {
+        "message": "Steward plugin installation"
+    },
+    "spm_uninstall_title": {
+        "message": "spm uninstall"
+    },
+    "spm_uninstall_subtitle": {
+        "message": "Steward plugin uninstallation"
+    },
+    "wsm_title": {
+        "message": "Steward websites management"
+    },
+    "wsm_subtitle": {
+        "message": "wsm list to view all, wsm install to install, wsm uninstall to uninstall"
+    },
+    "wsm_create_title": {
+        "message": "wsm create"
+    },
+    "wsm_create_subtitle": {
+        "message": "Create a website configuration for the current site"
+    },
+    "wsm_list_title": {
+        "message": "wsm list"
+    },
+    "wsm_list_subtitle": {
+        "message": "Steward website list, data from https://github.com/steward-launcher/steward-websites"
+    },
+    "wsm_install_title": {
+        "message": "wsm install"
+    },
+    "wsm_install_subtitle": {
+        "message": "Steward website installation"
+    },
+    "wsm_uninstall_title": {
+        "message": "wsm uninstall"
+    },
+    "wsm_uninstall_subtitle": {
+        "message": "Steward website uninstallation"
     },
     "newtab_title": {
         "message": "Some settings for New Tab"
@@ -302,29 +488,71 @@
     "newtab_newTabTitle_subtitle": {
         "message": "Enter the title you want in the popup box"
     },
+    "newtab_newTabUseFilter_title": {
+        "message": "Frosted glass effect"
+    },
+    "newtab_newTabUseFilter_subtitle": {
+        "message": "Switch to frosted glass effects for new tab"
+    },
     "wallpaper_title": {
         "message": "New Tab operations"
     },
     "wallpaper_subtitle": {
         "message": "If query empty，you can save or refresh; If no empty, press Enter will add the query as a wallpaper link into your library"
     },
+    "wallpaper_wp_title": {
+        "message": "New Tab operations"
+    },
+    "wallpaper_wp_subtitle": {
+        "message": "If query empty，you can save or refresh; If no empty, press Enter will add the query as a wallpaper link into your library"
+    },
+    "wallpaper_wps_title": {
+        "message": "Set the selected wallpaper as the current wallpaper"
+    },
+    "wallpaper_wps_subtitle": {
+        "message": "Search wallpapers, Press `Enter` to set as the current wallpaper"
+    },
     "wallpaper_action_save_title": {
         "message": "Save"
     },
     "wallpaper_action_save_subtitle": {
-        "message": "Save current wallpaper [ source ] to your collections"
+        "message": "Save current wallpaper to your collections"
+    },
+    "wallpaper_action_remove_title": {
+        "message": "Remove"
+    },
+    "wallpaper_action_remove_subtitle": {
+        "message": "Remove current wallpaper from your collections"
+    },
+    "wallpaper_action_block_title": {
+        "message": "Nerver show"
+    },
+    "wallpaper_action_block_subtitle": {
+        "message": "Add to the blacklist, and never show"
     },
     "wallpaper_action_refresh_title": {
         "message": "Refresh"
     },
     "wallpaper_action_refresh_subtitle": {
-        "message": "Refresh wallpaper from sources which include bing.com / collections / picsum.photos"
+        "message": "Refresh wallpaper from sources which include bing.com / collections / picsum.photos / Nasa / desktoppr"
+    },
+    "wallpaper_action_upload_title": {
+        "message": "Upload to WeiBo picture bed and save to you collections"
+    },
+    "wallpaper_action_upload_subtitle": {
+        "message": "Please select this option first, because the image link may be loaded slowly or invalidated - You need to log in to Sina Weibo first"
     },
     "wallpaper_action_download_title": {
         "message": "Download"
     },
     "wallpaper_action_download_subtitle": {
         "message": "The format is jpg"
+    },
+    "wallpaper_action_copy_title": {
+        "message": "Copy to clipboard"
+    },
+    "wallpaper_warning_format": {
+        "message": "Image format is incorrect"
     },
     "search_title": {
         "message": "Search for"
@@ -338,11 +566,29 @@
     "search_se_subtitle": {
         "message": "The query format is `Name | URL | Icon`. When empty, the selected engine can be deleted"
     },
+    "search_warning_format": {
+        "message": "The format of the new engine is wrong, <br> it should be like this: Name|Url|Icon,<br>"
+    },
+    "search_warning_del": {
+        "message": "This operation will permanently delete the search engine, whether to continue?"
+    },
     "workflow_title": {
         "message": "workflows"
     },
     "workflow_subtitle": {
         "message": "exec the commands in workflow"
+    },
+    "workflow_wf_title": {
+        "message": "workflows"
+    },
+    "workflow_wf_subtitle": {
+        "message": "exec the commands in workflow"
+    },
+    "workflow_wfe_title": {
+        "message": "edit workflow"
+    },
+    "workflow_wfe_subtitle": {
+        "message": "edit the selected workflow，press Enter to delete while query is empty， otherwise add the query to the workflow's content"
     },
     "general_useInContentPage": {
         "message": "use in every page"
@@ -371,6 +617,15 @@
     "general_wallpaperSources": {
         "message": "Wallpaper sources"
     },
+    "general_autoCreateWebsite": {
+        "message": "Auto config websites"
+    },
+    "general_websiteUrls": {
+        "message": "Website url tools"
+    },
+    "general_websiteShareUrls": {
+        "message": "Website social share urls"
+    },
     "tips_maxOperandsNum": {
         "message": "Sets the maximum number of entries processed by some plugins for shift + enter / click operations"
     },
@@ -385,6 +640,15 @@
     },
     "general_autoSelectByMouse": {
         "message": "Select the item by mouse"
+    },
+    "general_enableRandomWallpaper": {
+        "message": "Enable random wallpaper"
+    },
+    "general_newtabWidgets": {
+        "message": "NewTab Widgets"
+    },
+    "general_storeTypedQuery": {
+        "message": "Store typed query"
     },
     "tips_bm_shift": {
         "message": "While holding shift, items marked with ⇧ are opened in batches"
@@ -403,6 +667,9 @@
     },
     "tips_allowBatch": {
         "message": "Allow batch execution for use in workflow，format: `1-n | all | n | `"
+    },
+    "tips_storeTypedQuery": {
+        "message": "Press the up arrow with an empty query field to view up to 20 of your last typed queries. Automatically show the latest history."
     },
     "chrome_title": {
         "message": "chrome urls"
@@ -440,6 +707,9 @@
     "custom_subtitle": {
         "message": "Set the default command in the NewTab input box"
     },
+    "custom_warning_notempty": {
+        "message": "The command cannot be empty!"
+    },
     "random_title": {
         "message": "Apply commands randomly"
     },
@@ -457,5 +727,149 @@
     },
     "STORAGE_WARNING": {
         "message": "Storage is full, can not be added!"
+    },
+    "wallpaper_stoprefresh": {
+        "message": "The automatic refresh of the wallpaper has been disabled"
+    },
+    "wallpaper_save_done": {
+        "message": "Save successfully"
+    },
+    "wallpaper_remove_done": {
+        "message": "Remove successfully"
+    },
+    "wallpaper_update": {
+        "message": "Updating wallpaper..."
+    },
+    "settings_notion_workflow": {
+        "message": "Workflow"
+    },
+    "settings_notion_website": {
+        "message": "Website"
+    },
+    "settings_notion_wallpaper": {
+        "message": "Wallpaper"
+    },
+    "settings_website_workflow": {
+        "message": "Website"
+    },
+    "settings_tabs_general": {
+        "message": "General"
+    },
+    "settings_tabs_plugins": {
+        "message": "Plugins"
+    },
+    "settings_tabs_workflows": {
+        "message": "Workflows"
+    },
+    "settings_tabs_websites": {
+        "message": "Websites"
+    },
+    "settings_tabs_wallpapers": {
+        "message": "Wallpapers"
+    },
+    "settings_tabs_appearance": {
+        "message": "Appearance"
+    },
+    "settings_tabs_advanced": {
+        "message": "Advanced"
+    },
+    "settings_tabs_help": {
+        "message": "Help"
+    },
+    "settings_tabs_update": {
+        "message": "Update"
+    },
+    "settings_blocks_commandsplugins": {
+        "message": "Commands and plugins"
+    },
+    "settings_blocks_operationinteraction": {
+        "message": "Operation and interaction"
+    },
+    "settings_blocks_websitesconfiguration": {
+        "message": "Websites configuration"
+    },
+    "settings_blocks_newtab": {
+        "message": "NewTab configuration"
+    },
+    "settings_blocks_performance": {
+        "message": "Performance"
+    },
+    "settings_blocks_shortcutconfiguration": {
+        "message": "Shortcuts configuration"
+    },
+    "settings_blocks_websitebaseinfo": {
+        "message": "Base Info"
+    },
+    "settings_blocks_websitenav": {
+        "message": "Site Navigation, trigger: [ Direct search ] or [ / ]"
+    },
+    "settings_blocks_inpagenav": {
+        "message": "In-page Navigation, trigger: [ ` ]"
+    },
+    "settings_blocks_exportimport": {
+        "message": "Export / Import"
+    },
+    "settings_blocks_socialshareconfig": {
+        "message": "Social Share configuration"
+    },
+    "settings_blocks_plugineditor": {
+        "message": "Plugin Editor"
+    },
+    "settings_fields_title": {
+        "message": "Title"
+    },
+    "settings_fields_description": {
+        "message": "Description"
+    },
+    "settings_fields_content": {
+        "message": "Content"
+    },
+    "settings_fields_host": {
+        "message": "Patterns"
+    },
+    "settings_fields_siteicon": {
+        "message": "Site Icon"
+    },
+    "settings_fields_paths": {
+        "message": "Paths"
+    },
+    "settings_fields_navigations": {
+        "message": "Navigations"
+    },
+    "settings_fields_outlinescope": {
+        "message": "Outline Scope"
+    },
+    "settings_fields_anchors": {
+        "message": "Anchors"
+    },
+    "settings_fields_disable": {
+        "message": "Disable"
+    },
+    "settings_actions_save": {
+        "message": "Save"
+    },
+    "settings_actions_delete": {
+        "message": "Delete"
+    },
+    "settings_actions_newworkflow": {
+        "message": "New Workflow"
+    },
+    "settings_actions_newwebsite": {
+        "message": "New Website"
+    },
+    "settings_actions_applysave": {
+        "message": "Apply and Save"
+    },
+    "settings_actions_reset": {
+        "message": "Reset"
+    },
+    "settings_actions_export": {
+        "message": "Export"
+    },
+    "settings_actions_import": {
+        "message": "Import"
+    },
+    "settings_actions_downloadcrx": {
+        "message": "Download CRX"
     }
 }
